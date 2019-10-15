@@ -1,0 +1,65 @@
+// Calculates em so it could be used everywhere.
+//
+// @param integer (font) size in pixel
+// @param integer reference font-size in pixel
+// @return string em
+@function em($px: $base-line-height-px, $font-size: $base-font-size-px) {
+    @return $px / $font-size * 1em;
+}
+
+$line-height: em();
+
+//
+// @param integer font size in pixel
+// @param integer reference size (for rem always font-size of body) in pixel
+// @return string rem
+@function rem($px: $base-line-height-px, $font-size: $base-font-size-px) {
+    @return $px / $font-size * 1rem;
+}
+
+$sizes: (
+    1 :'xs',
+    1.5 :'sm',
+    1.7 : 'sm-2',
+    2 :'md',
+    2.3 :'md-2',
+    2.5 :'lg',
+    2.7 :'lg-2'
+);
+
+
+@each $index, $size in $sizes {
+    .font-#{$size} {
+        font-size: $index/2 * em();
+    }
+}
+
+/*
+.font-xs {
+  font-size: 0.7142857143em;
+}
+
+.font-sm {
+  font-size: 1.0714285714em;
+}
+
+.font-sm-2 {
+  font-size: 1.2142857143em;
+}
+
+.font-md {
+  font-size: 1.4285714286em;
+}
+
+.font-md-2 {
+  font-size: 1.6428571429em;
+}
+
+.font-lg {
+  font-size: 1.7857142857em;
+}
+
+.font-lg-2 {
+  font-size: 1.9285714286em;
+}
+ */
